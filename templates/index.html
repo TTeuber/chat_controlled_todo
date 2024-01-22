@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="test" hx-get="/other" hx-swap="innerHTML" hx-trigger="load">
+        loading
+    </div>
+
+    <form hx-post="/request_chat" hx-target="#test" hx-swap="innerHTML" hx-on::after-request="this.reset();">
+        <label>
+            input
+            <input type="text" name="input">
+        </label>
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<ul>
+    {% for item in items %}
+        <li hx-swap="innerHTML" hx-target="#test">
+            <input type="checkbox" {% if item.completed %} checked {% endif %} hx-put="/check/{{ item.id }}" hx-trigger="change">
+            {{ item.content }}
+            <button hx-delete="/delete/{{ item.id }}">x</button>
+        </li>
+    {% endfor %}
+</ul>
