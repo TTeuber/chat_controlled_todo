@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
     <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div id="test" hx-get="/other" hx-swap="innerHTML" hx-trigger="load">
-        loading
+    <div class="flex flex-col justify-center w-3/4 mx-auto">
+        <h1 class="text-6xl text-center p-8 bold">Chat Controlled Todo List</h1>
+        {% include 'todo.html' %}
+        <form hx-post="/request_chat" hx-target="#test" hx-swap="innerHTML" hx-on::after-request="this.reset();" class="border rounded p-2 my-2 flex justify-center items-center gap-4 bg-slate-200">
+            <label class="flex gap-2 items-center text-xl">
+                <input type="text" name="input" placeholder="Try 'create an item called test' or 'delete the first item'" class="border rounded p-2 w-[500px]">
+            </label>
+            <button type="submit" class="border bg-slate-100 border-black rounded p-2 text-xl">Submit</button>
+        </form>
+        <div class="flex flex-col bg-slate-200 p-8">
+            <h2 class="text-4xl text-center mb-4">Possible Commands</h2>
+            <ul class="bg-white p-4 flex flex-col gap-4 justify-start text-xl">
+                <li>Create an item: Example: "Create an item called Test"</li>
+                <li>Delete an item: Example: "Delete the first item"</li>
+                <li>Update item name: Example: "Change Test to Other"</li>
+                <li>Update item Status: Example: "Check off the last item"</li>
+            </ul>
+        </div>
     </div>
-
-    <form hx-post="/request_chat" hx-target="#test" hx-swap="innerHTML" hx-on::after-request="this.reset();">
-        <label>
-            input
-            <input type="text" name="input">
-        </label>
-        <button type="submit">submit</button>
-    </form>
 </body>
 </html>

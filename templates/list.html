@@ -1,9 +1,15 @@
-<ul>
-    {% for item in items %}
-        <li hx-swap="innerHTML" hx-target="#test">
-            <input type="checkbox" {% if item.completed %} checked {% endif %} hx-put="/check/{{ item.id }}" hx-trigger="change">
-            {{ item.content }}
-            <button hx-delete="/delete/{{ item.id }}">x</button>
-        </li>
-    {% endfor %}
-</ul>
+{% for item in items %}
+    <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted" hx-swap="innerHTML" hx-target="#test">
+        <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+            <input hx-put="/check/{{ item.id }}" hx-trigger="change" type="checkbox" role="checkbox" aria-checked="{% if item.checked %}true{% else %}false{% endif %}" {% if item.completed %} checked {% endif %}
+                    class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
+                    id="{{ item.id }}"/>
+        </td>
+        <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 text-xl">{{ item.content }}</td>
+        <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">
+            <button hx-delete="/delete/{{ item.id }}" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                Delete
+            </button>
+        </td>
+    </tr>
+{% endfor %}

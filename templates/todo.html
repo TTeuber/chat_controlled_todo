@@ -1,0 +1,27 @@
+<div class="flex flex-col h-fit border rounded bg-slate-200">
+    <main class="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
+        <div class="flex items-center"><h1 class="font-semibold text-lg md:text-2xl">Items</h1>
+        </div>
+        <div class="border shadow-sm rounded-lg bg-white">
+            <div class="relative w-full overflow-auto">
+                <table class="w-full caption-bottom text-sm">
+                    <thead class="[&amp;_tr]:border-b">
+                    <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+                        <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 w-[80px]">
+                            Status
+                        </th>
+                        <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 max-w-[150px]">
+                            Item
+                        </th>
+                        <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">
+                            Actions
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="[&amp;_tr:last-child]:border-0" id="test"  hx-get="/other" hx-swap="innerHTML" hx-trigger="load">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
